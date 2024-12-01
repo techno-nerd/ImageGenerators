@@ -2,6 +2,7 @@ import streamlit as st
 import diffusion
 import numpy as np
 import tensorflow as tf
+import pandas as pd
 
 
 LATENT_DIMS = 100
@@ -28,8 +29,11 @@ with col_diff:
 with col_gan:
     st.subheader("Generates a random digit using GAN")
     generate = st.button("Generate")
-    if generate:
-        noise = np.random.normal(0, 1, (1, LATENT_DIMS))
-        image = st.session_state['model'].predict(noise)[0]
-        image = np.clip((image*127.5)+127.5, 0, 255).astype(np.uint8)
-        st.image(image, width=2*image.shape[0])
+    if generate: 
+        cols = st.columns(4)
+        for col in cols:     
+            with col:      
+                noise = np.random.normal(0, 1, (4, LATENT_DIMS))
+                images = st.session_state['model'].predict(noise)
+                images = np.clip((images*127.5)+127.5, 0, 255).astype(np.uint8)
+                st.image(images, width=2*images[0].shape[0])
