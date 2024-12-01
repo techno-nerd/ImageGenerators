@@ -6,7 +6,7 @@ In this project, we will look at two image generation architectures: Generative 
 
 The `mnist_gan.ipynb` shows how a Generative Adverserial Network (GAN) can be trained to generate digits from 0-9. The `pokemon` folder has data and a baseline for training a pokemon generation GAN. However, it's performance is not very good because GANs as a whole are not the best at image generation. 
 
-`app.py` is a website where you can experiment with diffusion and a pre-trained MNIST GAN. You can access it [here]()
+`app.py` is a website where you can experiment with diffusion and a pre-trained MNIST GAN. You can access it [here](https://image-genai.streamlit.app/)
 
 <br>
 
