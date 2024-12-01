@@ -9,7 +9,7 @@ st.set_page_config("Image AI")
 st.title("Generative AI for Images")
 
 if not 'model' in st.session_state:
-    st.session_state['model'] = tf.keras.models.load_model('model/generator.keras')
+    st.session_state['model'] = tf.keras.models.load_model('model/mnist-generator.keras')
 
 
 col_diff, col_gan = st.columns(2)
@@ -26,10 +26,10 @@ with col_diff:
         st.image(image_path)
 
 with col_gan:
-    st.subheader("Generates a Pokemon Image using GAN")
+    st.subheader("Generates a random digit using GAN")
     generate = st.button("Generate")
     if generate:
         noise = np.random.normal(0, 1, (1, LATENT_DIMS))
         image = st.session_state['model'].predict(noise)[0]
-        image = np.clip(image * 255, 0, 255).astype(np.uint8)
+        image = np.clip((image*127.5)+127.5, 0, 255).astype(np.uint8)
         st.image(image, width=2*image.shape[0])
